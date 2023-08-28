@@ -13,8 +13,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import bean.JobCompany;
-import bean.JobCompanyRowMapper;
 import bean.JobProfile;
 import bean.Profile;
 import bean.ProfileCV;
@@ -80,7 +78,7 @@ public class ProfileRepository {
 	public int saveProfile(Profile profile) {
 		String sql = "insert into profile(name,phone,address,sex,dob,user_prof) values(?,?,?,?,?,?)";
 		return jdbcTemplate.update(sql, profile.getName(), profile.getPhone(), profile.getAddress(), profile.getSex(),
-				profile.getDob(), profile.getUser_prof());
+				formatDob(profile.getDob()), profile.getUser_prof());
 	}
 	
 	void formatDob(Profile profile) {
@@ -95,5 +93,18 @@ public class ProfileRepository {
 		}
         String formattedDate = outputFormatter.format(date);
         profile.setDob(formattedDate);
+	}
+	
+	String formatDob(String dob) {
+		SimpleDateFormat inputFormatter = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat outputFormatter = new SimpleDateFormat("yyyy/mm/dd");
+        Date date = null;
+		try {
+			date = inputFormatter.parse(dob);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return outputFormatter.format(date);
 	}
 }

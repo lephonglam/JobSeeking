@@ -113,10 +113,8 @@ function registerEmployer(event) {
 	var companyName = document.getElementById("companyName").value.trimStart();
 	var address = document.getElementById("address").value.trimStart();
 	var city = document.getElementById("city").value.trimStart();
-	if(!validatePhone(phone)){
-		event.preventDefault();
-	}
-	if (email.length == 0 || password.length == 0 || repeatPassword.length == 0 || contactName.length == 0
+	var validPhone = validatePhone(phone);
+	if (!validPhone || email.length == 0 || password.length == 0 || repeatPassword.length == 0 || contactName.length == 0
 	|| companyName.length == 0 || address.length == 0 || city.length == 0) {
 		validateEmail(email);
 		validatePassword(password);
@@ -164,8 +162,9 @@ function changeDobBorderColor() {
 
 function validateDobProfile(dob) {
 	
-	const dobRegex = /^\d{2}\/\d{2}\/\d{4}$/;
-	if (!dobRegex.test(dob)) {
+	const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
+	const dobProfileRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+	if (!dobRegex.test(dob) && !dobProfileRegex.test(dob)) {
 		document.getElementById("dob").style.borderColor = "red";
 		return false;
 	}
@@ -178,13 +177,9 @@ function apply(event) {
 	var sex = document.getElementById("sex").value.trimStart();
 	var address = document.getElementById("address").value.trimStart();
 	var dob = document.getElementById("dob").value.trimStart();
-	if(!validatePhone(phone)){
-		event.preventDefault();
-	}
-	if(!validateDobProfile(dob)){
-		event.preventDefault();
-	}
-	if (name.length == 0 || sex.length == 0 || address.length == 0) {
+	var validDobProfile = validateDobProfile(dob);
+	var validPhone = validatePhone(phone);
+	if (!validDobProfile || !validPhone || name.length == 0 || sex.length == 0 || address.length == 0) {
 		validateName(name);
 		validateSex(sex);
 		validateAddress(address);
@@ -201,10 +196,9 @@ function profile(event) {
 	var sex = document.getElementById("sex").value.trimStart();
 	var address = document.getElementById("address").value.trimStart();
 	var dob = document.getElementById("dob").value.trimStart();
-	if(!validatePhone(phone)){
-		event.preventDefault();
-	}
-	if (!validateDobProfile(dob) || sex.length == 0 || address.length == 0 || name.length == 0) {
+	var validDobProfile = validateDobProfile(dob);
+	var validPhone = validatePhone(phone);
+	if (!validDobProfile || !validPhone ||sex.length == 0 || address.length == 0 || name.length == 0) {
 		validateName(name);
 		validateSex(sex);
 		validateAddress(address);

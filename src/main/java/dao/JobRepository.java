@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.mysql.cj.xdevapi.Result;
 
 import bean.Job;
 import bean.JobCompany;

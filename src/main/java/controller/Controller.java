@@ -598,7 +598,7 @@ public class Controller extends HttpServlet {
 				message.setFrom(new InternetAddress(senderEmail));
 				message.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(username));
 				message.setSubject("Create new password");
-				String createPasswordLink = "http://13.40.188.187" + request.getContextPath()
+				String createPasswordLink = "http://localhost:8087" + request.getContextPath()
 						+ "/restore-password?username=" + username;
 				String emailContent = "Please access path below to restore password:\n" + createPasswordLink
 						+ "\n\nBest regards!";
@@ -719,4 +719,6 @@ public class Controller extends HttpServlet {
 		}
 		return outputFormatter.format(date);
 	}
+	
+	
 }
