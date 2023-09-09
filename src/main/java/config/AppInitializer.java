@@ -37,7 +37,7 @@ public class AppInitializer implements org.springframework.web.WebApplicationIni
 //        FilterRegistration.Dynamic filterRegistration = servletContext.addFilter("characterEncodingFilter", characterEncodingFilter);
 //        filterRegistration.addMappingForUrlPatterns(null, false, "/*");
 //        
-        // (Tùy chọn) Đăng ký DispatcherServlet nếu bạn sử dụng Spring MVC
+        // (Tùy chọn) Đăng ký DispatcherServlet nếu sử dụng Spring MVC
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");

@@ -171,6 +171,7 @@ public class Controller extends HttpServlet {
 		modelAndView.addObject("listJobs", listJobs);
 		modelAndView.addObject("name", username);
 	}
+	
 
 //	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 //	public String adminPage() {
