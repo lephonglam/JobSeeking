@@ -13,10 +13,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-//thay thế cho cấu hình viewResolver và resources mapping trong JobSeeking-servlet.xml
+//alter viewResolver and resources mapping configuration in JobSeeking-servlet.xml
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "controller") //thay thế cho <context:component-scan base-package="controller" />
+@ComponentScan(basePackages = "controller") //alter <context:component-scan base-package="controller" />
 public class WebMvcConfig implements WebMvcConfigurer{
 	@Bean(name = "viewResolver")
 	public InternalResourceViewResolver getViewResolver() {

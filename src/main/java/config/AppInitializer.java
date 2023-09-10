@@ -17,27 +17,27 @@ public class AppInitializer implements org.springframework.web.WebApplicationIni
 	
 	@Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        // Tạo và cấu hình ApplicationContext của Spring
+        // Create and configure ApplicationContext
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.register(WebMvcConfig.class);
         context.register(SecurityConfig.class);
         context.register(UserRepository.class);
-        // Đăng ký ContextLoaderListener
+        // Register ContextLoaderListener
         servletContext.addListener(new ContextLoaderListener(context));
-        // Đăng ký springSecurityFilterChain
+        // Register springSecurityFilterChain
         servletContext.addFilter("securityFilter", new DelegatingFilterProxy("springSecurityFilterChain"))
       .addMappingForUrlPatterns(null, false, "/*");
         
-//        // Cấu hình CharacterEncodingFilter
+//        // Configure CharacterEncodingFilter
 //        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 //        characterEncodingFilter.setEncoding("UTF-8");
 //        characterEncodingFilter.setForceEncoding(true);
 //
-//        // Đăng ký Filter
+//        // Register characterEncodingFilter
 //        FilterRegistration.Dynamic filterRegistration = servletContext.addFilter("characterEncodingFilter", characterEncodingFilter);
 //        filterRegistration.addMappingForUrlPatterns(null, false, "/*");
 //        
-        // (Tùy chọn) Đăng ký DispatcherServlet nếu sử dụng Spring MVC
+        // Register DispatcherServlet in Spring MVC
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
